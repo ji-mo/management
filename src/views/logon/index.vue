@@ -39,6 +39,7 @@ export default {
       account: '',
       password: '',
       rePassword: '',
+      result: '',
     };
   },
   methods: {
@@ -50,11 +51,10 @@ export default {
     async logon() {
       if (this.password === this.rePassword) {
         try {
-          const result = await this.$api.logon(`account=${this.account}&password=${this.password}&rePassword=${this.rePassword}&username=${this.username}`);
-          alert(result.msg);
+          this.result = await this.$api.logon(`account=${this.account}&password=${this.password}&rePassword=${this.rePassword}&username=${this.username}`);
           this.$router.push('/login');
         } catch (error) {
-          alert(error);
+          this.result = error;
         }
       }
     },

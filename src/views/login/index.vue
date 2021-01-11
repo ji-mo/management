@@ -32,17 +32,17 @@ export default {
     return {
       account: '',
       password: '',
+      result: '',
     };
   },
   methods: {
     async login() {
       try {
-        const result = await this.$api.login(`account=${this.account}&password=${this.password}`);
-        console.log(result.msg);
+        this.result = await this.$api.login(`account=${this.account}&password=${this.password}`);
         this.Cookie.setCookie('username', this.account);
         this.$router.push('/main');
       } catch (error) {
-        alert(error);
+        this.result = error;
       }
     },
     reset() {
