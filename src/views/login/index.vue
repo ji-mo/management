@@ -19,8 +19,8 @@
         </div>
       </div>
       <div class="btn">
-        <input type="submit" value="登录" @click="login" />
-        <input type="reset" value="重置" @click="reset" class="reset" />
+        <input type="button" value="登录" @click="login" />
+        <input type="button" value="重置" @click="reset" class="reset" />
       </div>
     </form>
   </div>
@@ -56,21 +56,3 @@ export default {
 <style scoped>
 @import url(../../assets/css/login.css);
 </style>
-<style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-image: url(https://www.misshere.cn/management-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-</style>>
