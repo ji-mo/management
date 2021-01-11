@@ -5,6 +5,8 @@ import login from '@/views/login/index.vue';
 import logon from '@/views/logon/index.vue';
 import main from '@/views/main/index.vue';
 import notFound from '@/views/notFound/index.vue';
+import addWorker from '@/views/main/addWorker/index.vue';
+import workerList from '@/views/main/workerList/index.vue';
 
 import Cookie from '@/assets/js/cookie';
 
@@ -22,6 +24,16 @@ const routes = [
   {
     path: '/main',
     component: main,
+    redirect: '/main/workerList',
+    children: [
+      {
+        path: 'workerList',
+        component: workerList,
+      }, {
+        path: 'addWorker',
+        component: addWorker,
+      },
+    ],
   },
   {
     path: '/notFound',
