@@ -1,5 +1,5 @@
 <template>
-  <div>这是主页</div>
+  <div>页面自闭了，请重新访问！</div>
 </template>
 
 <script>
