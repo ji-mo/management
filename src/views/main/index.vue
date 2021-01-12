@@ -1,68 +1,56 @@
 <template>
   <div>
-    <div class="header">
-      <div class="logo">
-        <img src="img/stytem.png" alt="" />
-        <span>学生信息管理系统</span>
+    <div class="main-bg">
+      <div class="header">
+        <div class="logo">
+          <img src="@/assets/img/stytem.png" alt="" />
+          <span>人事管理系统</span>
+        </div>
+        <ul class="user">
+          <li class="username">
+            <img src="@/assets/img/people.png" alt="" />
+            <span id="username">管理员：{{ username }}</span>
+          </li>
+          <li class="logout">
+            <router-link to="/login">
+              <img src="@/assets/img/close.png" alt="" /><span>退出</span>
+            </router-link>
+          </li>
+        </ul>
       </div>
-      <ul class="user">
-        <li class="username">
-          <img src="img/people.png" alt="" /><span id="username">Jimo</span>
-        </li>
-        <li class="logout">
-          <a href="login.html"
-            ><img src="img/close.png" alt="" /><span>退出</span></a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="left-menu">
-      <div class="user-news">
-        <img src="img/user.jpg" alt="" />
-        <span id="_username">Jimo</span>
+      <div class="left-menu">
+        <div class="user-news">
+          <img src="@/assets/img/user.jpg" alt="" />
+          <span id="_username">{{ username }}，欢迎使用</span>
+        </div>
+        <dl class="menu">
+          <dt>信息管理</dt>
+          <router-link tag="dd" to="/main/workerList">员工列表</router-link>
+          <router-link tag="dd" to="/main/addWorker">员工入职</router-link>
+          <!-- <router-link tag="dd" to="/main">员工考勤</router-link>
+          <router-link tag="dd" to="/main">员工休假</router-link> -->
+        </dl>
       </div>
-      <dl class="menu">
-        <dt>信息管理</dt>
-        <router-link tag="dd" to="/main/workerList">学生列表</router-link>
-        <router-link tag="dd" to="/main/addWorker">新增学生</router-link>
-        <!-- <dd class="active" data-id="student-list"><span>></span></dd>
-        <dd data-id="student-add"><span>></span></dd> -->
-        <!-- <dd data-id='student-add'>新增学生<span>></span></dd>
-            <dd data-id='student-add'>新增学生<span>></span></dd>
-            <dd data-id='student-add'>新增学生<span>></span></dd> -->
-      </dl>
-    </div>
-    <div class="right-content">
+      <div class="right-content">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      username: '',
+    };
+  },
+  created() {
+    this.username = this.Cookie.getCookie('username');
+  },
+};
 </script>
 
 <style scoped>
 @import url(../../assets/css/index.css);
-</style>>
-<style scoped>
-:root{
-    height: 100%;
-}
-*{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    font-size: 14px;
-}
-body{
-    width: 100%;
-    height: calc(100% - 70px);
-}
-li{
-    list-style: none;
-}
-a{
-    text-decoration: none;
-}
 </style>

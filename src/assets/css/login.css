@@ -4,8 +4,7 @@
     outline: none;
     box-sizing: border-box;
 }
-
-body {
+.login-bg {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +59,7 @@ body {
 .wrapper .input-data {
     width: 280px;
     height: 40px;
-    margin-top: 15px;
+    margin-top: 16px;
     position: relative;
 }
 

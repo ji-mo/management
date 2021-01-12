@@ -18,8 +18,27 @@ ajax.interceptors.response.use((data) => {
 
 const login = (data) => ajax.post(URLs.login, `appkey=${appkey}&${data}`);
 const logon = (data) => ajax.post(URLs.logon, `appkey=${appkey}&${data}`);
+const findPage = (page, size) => ajax.get(URLs.findPage, {
+  params: {
+    page,
+    size,
+  },
+});
+const update = (options) => ajax.get(URLs.update, {
+  params: {
+    ...options,
+  },
+});
+const delBySno = (num) => ajax.get(URLs.delete, {
+  params: {
+    num,
+  },
+});
 
 export default {
   login,
   logon,
+  findPage,
+  update,
+  delBySno,
 };
