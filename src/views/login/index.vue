@@ -36,19 +36,19 @@ export default {
     return {
       account: '',
       password: '',
-      result: '',
     };
   },
   methods: {
     async login() {
       try {
-        this.result = await this.$api.login(
+        const { msg } = await this.$api.login(
           `account=${this.account}&password=${this.password}`,
         );
+        this.$Toast({ msg, type: 'success' });
         this.Cookie.setCookie('username', this.account);
         this.$router.push('/main');
       } catch (error) {
-        this.result = error;
+        this.$Toast({ msg: error, type: 'fail' });
       }
     },
     reset() {

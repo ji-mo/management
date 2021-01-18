@@ -47,7 +47,7 @@
       </div>
       <div>
         <label for=""></label>
-        <button id="edi-submit" class="btn" @click="commit">提交</button>
+        <button id="edi-submit" class="btn" @click.prevent="commit">提交</button>
         <input type="reset" value="重置" class="btn" />
       </div>
     </form>
@@ -67,9 +67,18 @@ export default {
     ...mapMutations(['setShowModal']),
     edit(key, value) {
       this.worker[key] = value;
+      console.log(value);
     },
-    commit() {
-
+    async commit() {
+      const data = { ...this.activeWor, ...this.worker };
+      try {
+        const { msg } = await this.$api.update(data);
+        this.$Toast({ msg, type: 'success' });
+        this.setShowModal(false);
+        Object.assign(this.activeWor, this.worker);
+      } catch (error) {
+        this.$Toast({ msg: error, type: 'fail' });
+      }
     },
   },
   computed: {

@@ -43,7 +43,6 @@ export default {
       account: '',
       password: '',
       rePassword: '',
-      result: '',
     };
   },
   methods: {
@@ -55,12 +54,13 @@ export default {
     async logon() {
       if (this.password === this.rePassword) {
         try {
-          this.result = await this.$api.logon(
+          const { msg } = await this.$api.logon(
             `account=${this.account}&password=${this.password}&rePassword=${this.rePassword}&username=${this.username}`,
           );
+          this.$Toast({ msg, type: 'success' });
           this.$router.push('/login');
         } catch (error) {
-          this.result = error;
+          this.$Toast({ msg: error, type: 'fail' });
         }
       }
     },
