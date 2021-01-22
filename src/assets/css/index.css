@@ -229,7 +229,7 @@ table .edit{
 table .remove{ 
     background-color: #665b3b;
 }
-.right-content .turn-page{
+/* .right-content .turn-page{
     width: 300px;
     position: absolute;
     bottom: 12px;
@@ -251,7 +251,7 @@ table .remove{
     font: 16px Georgia, "Times New Roman", Times, serif;
     user-select: none;
     cursor: pointer;
-}
+} */
 /* 表单 */
 #student-add{
     position: absolute;
