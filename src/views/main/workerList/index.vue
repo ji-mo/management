@@ -4,7 +4,8 @@
     <transition>
       <show-modal v-if="show"/>
     </transition>
-    <turn-page/>
+    <turn-page :totalPage="totalPage" :nowPage="nowPage"
+    @current-page="cpage"></turn-page>
   </div>
 </template>
 
@@ -12,7 +13,7 @@
 import workerTable from '@/components/workerList/workerTable.vue';
 import showModal from '@/components/workerList/showModal.vue';
 import turnPage from '@/components/workerList/turnPage.vue';
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   components: {
@@ -20,8 +21,17 @@ export default {
     showModal,
     turnPage,
   },
+  methods: {
+    ...mapActions(['getWorkList']),
+    cpage(i) {
+      this.getWorkList(i);
+    },
+  },
+  created() {
+    this.getWorkList(1);
+  },
   computed: {
-    ...mapState(['show']),
+    ...mapState(['show', 'nowPage', 'totalPage']),
   },
 };
 </script>

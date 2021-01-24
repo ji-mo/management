@@ -23,7 +23,7 @@
         <td>{{ item.address }}</td>
         <td>
             <button class="btn edit" @click="edit(item)">编辑</button>
-            <button class="btn remove" @click="del(item)">删除</button>
+            <button class="btn remove" @click="del(item.sNo)">删除</button>
         </td>
       </tr>
     </tbody>
@@ -31,24 +31,24 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
-  data() {
-    return {
-      list: [],
-    };
-  },
-  async created() {
-    const { data: { findByPage: list } } = await this.$api.findPage(1, 10);
-    this.list = list;
-    console.log(this.list);
+  computed: {
+    ...mapState(['list']),
   },
   methods: {
     ...mapMutations(['setShowModal', 'setActiveWor']),
+    ...mapActions(['delWorker']),
     edit(worker) {
       this.setActiveWor(worker);
       this.setShowModal(true);
+    },
+    del(sNo) {
+      const flag = window.confirm('are you 要删除我咩！');
+      if (flag) {
+        this.delWorker(sNo);
+      }
     },
   },
 };

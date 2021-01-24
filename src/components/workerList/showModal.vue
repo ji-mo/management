@@ -67,7 +67,6 @@ export default {
     ...mapMutations(['setShowModal']),
     edit(key, value) {
       this.worker[key] = value;
-      console.log(value);
     },
     async commit() {
       const data = { ...this.activeWor, ...this.worker };

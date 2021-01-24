@@ -34,6 +34,16 @@ const delBySno = (num) => ajax.get(URLs.delete, {
     num,
   },
 });
+const add = (options) => ajax.get(URLs.add, {
+  params: {
+    ...options,
+  },
+});
+const delWorker = (sNo) => ajax.get(URLs.delBySno, {
+  params: {
+    sNo,
+  },
+});
 
 export default {
   login,
@@ -41,4 +51,6 @@ export default {
   findPage,
   update,
   delBySno,
+  add,
+  delWorker,
 };
