@@ -21,7 +21,7 @@
         <input type="text" v-model="user.email" name="email" />
       </div>
       <div>
-        <label for="num">学号：</label>
+        <label for="num">工号：</label>
         <input type="text" v-model="user.sNo" name="sNo" />
       </div>
       <div>
@@ -63,8 +63,16 @@ export default {
   methods: {
     async commit() {
       try {
+        const that = this;
         const { msg, status: type } = await this.$api.add(this.user);
         this.$Toast({ msg, type });
+        this.$money.addMoney({
+          name: that.user.name,
+          money: '0',
+          should: '0',
+          reality: '0',
+        });
+        console.log(this);
         this.$router.push('/main/workerList');
       } catch (error) {
         this.$Toast({ msg: error, type: 'fail' });
