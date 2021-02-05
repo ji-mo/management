@@ -9,41 +9,22 @@
       <div>
         <label for="edi-name">姓名：</label>
         <input type="text" id="edi-name" name="name"
-        :value="activeWor.name" @input="edit('name',$event.target.value)"/>
+        :value="activeMon.name" @input="edit('name',$event.target.value)"/>
       </div>
       <div>
-        <label for="">性别：</label>
-        <input type="radio" name="sex" id="edi-male"
-        :checked="activeWor.sex === 0" @change="edit('sex',0)"/>
-        <label for="edi-male" class="sex">男</label>
-        <input type="radio" name="sex" id="edi-female"
-        :checked="activeWor.sex === 1" @change="edit('sex',1)"/>
-        <label for="edi-female" class="sex">女</label>
+        <label for="edi-num">薪资：</label>
+        <input type="text" id="edi-num" name="money"
+        :value="activeMon.money" @input="edit('money',$event.target.value)"/>
       </div>
       <div>
-        <label for="edi-email">邮箱：</label>
-        <input type="text" id="edi-email" name="email"
-        :value="activeWor.email" @input="edit('eamil',$event.target.value)"/>
-      </div>
-      <div>
-        <label for="edi-num">工号：</label>
-        <input type="text" id="edi-num" name="sNo"
-        :value="activeWor.sNo" @input="edit('sNo',$event.target.value)"/>
-      </div>
-      <div>
-        <label for="edi-birth">生日：</label>
+        <label for="edi-birth">考勤：</label>
         <input type="text" id="edi-birth" name="birth"
-        :value="activeWor.birth" @input="edit('birth',$event.target.value)"/>
+        :value="activeMon.should" @input="edit('should',$event.target.value)"/>
       </div>
       <div>
-        <label for="edi-phone">手机号：</label>
+        <label for="edi-phone">出勤：</label>
         <input type="text" id="edi-phone" name="phone"
-        :value="activeWor.phone" @input="edit('phone',$event.target.value)"/>
-      </div>
-      <div>
-        <label for="edi-dress">部门：</label>
-        <input type="text" id="edi-dress" name="address"
-        :value="activeWor.address" @input="edit('address',$event.target.value)"/>
+        :value="activeMon.reality" @input="edit('reality',$event.target.value)"/>
       </div>
       <div>
         <label for=""></label>
@@ -55,7 +36,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
   data() {
@@ -65,23 +46,25 @@ export default {
   },
   methods: {
     ...mapMutations(['setShowModal']),
+    ...mapActions(['getMoneyList']),
     edit(key, value) {
       this.worker[key] = value;
     },
     async commit() {
-      const data = { ...this.activeWor, ...this.worker };
+      const data = { ...this.worker };
+      console.log(data);
       try {
-        const { msg } = await this.$api.update(data);
-        this.$Toast({ msg, type: 'success' });
+        const value = await this.$api.updateMoney(this.activeMon.id, data);
+        console.log(this.activeMon.id, value);
         this.setShowModal(false);
-        Object.assign(this.activeWor, this.worker);
+        this.getMoneyList();
       } catch (error) {
         this.$Toast({ msg: error, type: 'fail' });
       }
     },
   },
   computed: {
-    ...mapState(['activeWor']),
+    ...mapState(['activeMon']),
   },
 };
 </script>

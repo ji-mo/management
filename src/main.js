@@ -6,13 +6,10 @@ import Cookie from './assets/js/cookie';
 import api from './api/index';
 import Toast from './components/Toast';
 
-const moneySer = require('./utils/services/moneyService');
-
 Vue.config.productionTip = false;
 Vue.prototype.Cookie = Cookie;
 Vue.prototype.$api = api;
 Vue.prototype.$Toast = Toast;
-Vue.prototype.$money = moneySer;
 
 new Vue({
   router,

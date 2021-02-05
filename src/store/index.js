@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     show: false,
     activeWor: null,
+    activeMon: null,
     list: [],
+    moneylist: [],
     size: 20,
     count: 0,
     totalPage: 0,
@@ -18,11 +20,17 @@ export default new Vuex.Store({
     setList(state, list) {
       state.list = list;
     },
+    setMoneyList(state, list) {
+      state.moneylist = list;
+    },
     setShowModal(state, bool) {
       state.show = bool;
     },
     setActiveWor(state, worker) {
       state.activeWor = worker;
+    },
+    setActiveMon(state, worker) {
+      state.activeMon = worker;
     },
     setTotalPage(state, count) {
       state.count = count;
@@ -39,6 +47,10 @@ export default new Vuex.Store({
       commit('setTotalPage', count);
       commit('setNowPage', page);
     },
+    async getMoneyList({ commit }) {
+      const { datas } = await api.getMoneyPage();
+      commit('setMoneyList', datas);
+    },
     async delWorker({ state, dispatch }, sNo) {
       const value = await api.delWorker(sNo);
       console.log(value);
@@ -49,6 +61,11 @@ export default new Vuex.Store({
         page = state.nowPage;
       }
       dispatch('getWorkList', page);
+    },
+    async delMoney({ dispatch }, sNo) {
+      const value = await api.deleteMoney(sNo);
+      console.log(value);
+      dispatch('getMoneyList');
     },
   },
   modules: {

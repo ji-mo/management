@@ -27,8 +27,8 @@
           <dt>信息管理</dt>
           <router-link tag="dd" to="/main/workerList">员工列表</router-link>
           <router-link tag="dd" to="/main/addWorker">员工入职</router-link>
-          <router-link tag="dd" to="/main">员工薪资</router-link>
-          <router-link tag="dd" to="/main">员工考勤</router-link>
+          <router-link tag="dd" to="/main/moneyList">员工薪资</router-link>
+          <router-link tag="dd" to="/main/addMoney">员工考勤</router-link>
         </dl>
       </div>
       <div class="right-content">

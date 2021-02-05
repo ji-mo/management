@@ -8,6 +8,13 @@ const ajax = axios.create({
     appkey,
   },
 });
+const local = axios.create({
+  baseURL: 'http://localhost:5108/api/money/',
+});
+local.interceptors.response.use((data) => {
+  const res = data.data.data;
+  return res;
+});
 ajax.interceptors.response.use((data) => {
   const res = data.data;
   if (res.status === 'success') {
@@ -44,6 +51,27 @@ const delWorker = (sNo) => ajax.get(URLs.delBySno, {
     sNo,
   },
 });
+const getMoneyById = (sId) => local.get(`${sId}`);
+const addMoney = function (data) {
+  axios({
+    url: 'http://localhost:5108/api/money/',
+    method: 'post',
+    data: {
+      ...data,
+    },
+  });
+};
+const updateMoney = function (sId, data) {
+  axios({
+    url: `http://localhost:5108/api/money/${sId}`,
+    method: 'put',
+    data: {
+      ...data,
+    },
+  });
+};
+const getMoneyPage = () => local.get();
+const deleteMoney = (sId) => local.delete(`${sId}`);
 
 export default {
   login,
@@ -53,4 +81,9 @@ export default {
   delBySno,
   add,
   delWorker,
+  getMoneyById,
+  addMoney,
+  updateMoney,
+  getMoneyPage,
+  deleteMoney,
 };

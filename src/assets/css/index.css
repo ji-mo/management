@@ -187,6 +187,7 @@ a{
     margin-top: 80px;
     background-color: #eee;
     position: relative;
+    overflow-x: hidden;
 }
 /* 表格 */
 #student-list{

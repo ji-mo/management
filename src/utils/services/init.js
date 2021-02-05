@@ -1,14 +1,14 @@
-const moneySer = require('./moneyService');
+// const moneySer = require('./moneyService');
 
 // 增加;
-moneySer.addMoney({
-  name: '悸沫',
-  money: '5000',
-  should: '22',
-  reality: '21',
-}).then((res) => {
-  console.log(res);
-});
+// moneySer.addMoney({
+//   name: '悸沫',
+//   money: '5000',
+//   should: '22',
+//   reality: '21',
+// }).then((res) => {
+//   console.log(res);
+// });
 
 // 删除
 // moneySer.deleteMoney(1).then((res) => {

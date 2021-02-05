@@ -63,16 +63,12 @@ export default {
   methods: {
     async commit() {
       try {
-        const that = this;
+        // const that = this;
         const { msg, status: type } = await this.$api.add(this.user);
         this.$Toast({ msg, type });
-        this.$money.addMoney({
-          name: that.user.name,
-          money: '0',
-          should: '0',
-          reality: '0',
-        });
-        console.log(this);
+        // const value = await this.$api.addMoney({
+        //   name: that.user.name,
+        // });
         this.$router.push('/main/workerList');
       } catch (error) {
         this.$Toast({ msg: error, type: 'fail' });

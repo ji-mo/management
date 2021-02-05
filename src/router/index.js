@@ -6,7 +6,9 @@ import logon from '@/views/logon/index.vue';
 import main from '@/views/main/index.vue';
 import notFound from '@/views/notFound/index.vue';
 import addWorker from '@/views/main/addWorker/index.vue';
+import addMoney from '@/views/main/addMoney/index.vue';
 import workerList from '@/views/main/workerList/index.vue';
+import moneyList from '@/views/main/moneyList/index.vue';
 
 import Cookie from '@/assets/js/cookie';
 
@@ -32,6 +34,12 @@ const routes = [
       }, {
         path: 'addWorker',
         component: addWorker,
+      }, {
+        path: 'moneyList',
+        component: moneyList,
+      }, {
+        path: 'addMoney',
+        component: addMoney,
       },
     ],
   },
